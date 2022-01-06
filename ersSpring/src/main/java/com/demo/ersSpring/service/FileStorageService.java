@@ -1,0 +1,37 @@
+package com.demo.ersSpring.service;
+
+import java.io.IOException;
+import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.demo.ersSpring.entity.FileDB;
+import com.demo.ersSpring.repository.FileDBRepository;
+
+
+
+@Service
+public class FileStorageService {
+
+  @Autowired
+  private FileDBRepository fileDBRepository;
+
+  public FileDB store(MultipartFile file, int requestId) throws IOException {
+    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes(), requestId);
+
+   
+    return fileDBRepository.save(FileDB);
+  }
+
+  public FileDB getFile(int id) {
+    return fileDBRepository.findById(id).get();
+  }
+  
+  public Stream<FileDB> getAllFiles() {
+    return fileDBRepository.findAll().stream();
+  }
+}
