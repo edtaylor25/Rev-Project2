@@ -1,0 +1,215 @@
+<div class="container">
+    <div class="content contact-list">
+        <div class="card card-default">
+            <div class="card-header align-items-center px-3 px-md-5">
+                <h2>All Employees</h2>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-add-contact">Add Employee</button>
+            </div>
+
+            <div class="card-body px-3 px-md-5">
+                <div class="row">
+                    <div *ngFor="let usr of allUsers" class="col-lg-6 col-xl-4 col-md-6 col-sm-12">
+                        <div class="card card-default p-4">
+                            <a href="javascript:0" class="media text-secondary" data-toggle="modal" data-target="#modal-contact">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 img-fluid rounded" alt="Avatar Image" />
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-2 text-dark">{{usr.screenName}}</h5>
+                                    <ul class="list-unstyled text-smoke text-smoke">
+                                        <li class="d-flex">
+                                            <i class="mdi mdi-badge-account mr-1"></i>
+                                            <span>{{usr.id}}</span>
+                                        </li>
+                                        <li class="d-flex">
+                                            <i class="mdi mdi-map mr-1"></i>
+                                            <span>{{usr.homeState}}</span>
+                                        </li>
+                                        <li class="d-flex">
+                                            <i class="mdi mdi-email mr-1"></i>
+                                            <span>{{usr.email}}</span>
+                                        </li>
+                                        <!-- <li class="d-flex">
+                                            <i class="mdi mdi-phone mr-1"></i>
+                                            <span>(123) 888 777 632</span>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-end border-bottom-0">
+                        <button type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
+                            <i class="mdi mdi-pencil" (click)="editUserInfo()"></i>
+                        </button>
+
+                        <!-- <div class="dropdown">
+                            <button class="btn-dots-icon" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical"></i>
+                            </button>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                                <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                                <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                            </div>
+                        </div> -->
+
+                        <button type="button" class="btn-close-icon" data-dismiss="modal" aria-label="Close">
+                            <i class="mdi mdi-close"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body pt-0">
+                        <div class="row no-gutters">
+                            <div class="col-md-6">
+                                <div class="profile-content-left px-4">
+                                    <div class="card text-center px-0 border-0">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="contact-info px-4">
+                                    <h4 class="mb-1">Employee Details</h4>
+                                    <p class="text-dark font-weight-medium pt-4 mb-2">Employee ID</p>
+                                    <p>{{user.id}}</p>
+                                    <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
+                                    <p>{{user.email}}</p>
+                                    <p class="text-dark font-weight-medium pt-4 mb-2">Address</p>
+                                    <p>{{user.address}}</p>
+                                    <p class="text-dark font-weight-medium pt-4 mb-2">Home Town</p>
+                                    <p>{{user.homeTown}}</p>
+                                    <p class="text-dark font-weight-medium pt-4 mb-2">State</p>
+                                    <p>{{user.homeState}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Employee Button  -->
+        <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <form #addForm = "ngForm">
+                        <div class="modal-header px-4">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Create New Employee</h5>
+                        </div>
+                        <div class="modal-body px-4">
+                            <div class="form-group row mb-6">
+                              <!--  <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
+                                <div class="col-sm-8 col-lg-10">
+                                    <div class="custom-file mb-1">
+                                        <input type="file" class="custom-file-input" id="coverImage" required="" />
+                                        <label class="custom-file-label" for="coverImage">Choose file...</label>
+                                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="row mb-2"> -->
+                               <!-- <div class="col-lg-6">
+                                     <div class="form-group">
+                                        <label for="firstName">First name</label>
+                                        <input type="text" class="form-control" id="firstName" value="Albrecht" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Last name</label>
+                                        <input type="text" class="form-control" id="lastName" value="Straub" />
+                                    </div>
+                                </div> -->
+
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label for="userName">Username</label>
+                                        <input type="text"  class="form-control" id="userName" placeholder="bsmith" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label for="password">Password</label>
+                                        <input type="password"  class="form-control" id="password" placeholder="Password" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="albrecht.straub@gmail.com" requierd/>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label for="homeState">Home State</label>
+                                        <input type="text" class="form-control" id="homeState" placeholder="NY" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label for="homeTown">Home Town</label>
+                                        <input type="text"  class="form-control" id="homeTown" placeholder="City" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label for="address">Address</label>
+                                        <input type="text"  class="form-control" id="address" placeholder="address" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer px-4">
+                            <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancel</button>
+                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-dark btn-pill">Add Employee</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-rounded">  -->
+
+<!-- <div class="container-md">
+<h2>Employee Info</h2>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Screen Name</th>
+                <th>User Type</th>
+                <th>Home State</th>
+                <th>Home Town</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usr of allUsers">
+                <td>{{usr.id}}</td>
+                <td>{{usr.screenName}}</td>
+                <td>{{usr.userType}}</td>
+                <td>{{usr.homeState}}</td>
+                <td>{{usr.homeTown}}</td>
+                <td>{{usr.address}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->

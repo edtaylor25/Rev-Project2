@@ -1,0 +1,87 @@
+   <div class="container-md">
+   <h2>YOUR INFO</h2>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Screen Name</th>
+                <th>User Type</th>
+                <th>Home State</th>
+                <th>Home Town</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentUser.id}}</td>
+                <td>{{currentUser.email}}</td>
+                <td>{{currentUser.password}}</td>
+                <td>{{currentUser.screenName}}</td>
+                <td>{{currentUser.userType}}</td>
+                <td>{{currentUser.homeState}}</td>
+                <td>{{currentUser.homeTown}}</td>
+                <td>{{currentUser.address}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class= "btn btn-dark" (click)=toggleEdit()>EDIT</button>
+
+    <div *ngIf = "editFlag">
+        <form #editForm="ngForm" (ngSubmit)="editUserInfo()" class="form-inline" >
+            <label for="screenName">Screen Name</label>
+            <input type="text" 
+                class="form-control" 
+                placeholder="Enter a screeen name"
+                ngModel name="screenName" 
+                id="screenName" 
+                [(ngModel)]="editUser.screenName" 
+                required>
+
+            <label for="homeState">Home State</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Enter home state" 
+                ngModel name = "homeState"
+                id="homeState" 
+                [(ngModel)] = "editUser.homeState"
+                required>
+
+            <label for="homeTown">Home Town</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Enter home town" 
+                ngModel name = "homeTown"
+                id="homeTown" 
+                [(ngModel)] = "editUser.homeTown"
+                required>
+
+            <label for="address">Address</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="enter address" 
+                ngModel name = "address"
+                id="address" 
+                [(ngModel)] = "editUser.address"
+                required>
+            
+            <label for="email">Email</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="enter email" 
+                ngModel name = "email"
+                id="email" 
+                [(ngModel)] = "editUser.email"
+                required> 
+                
+            <button [disabled]="editForm.invalid" type="submit" class="btn btn-dark" (click)="editUserInfo()">UPDATE</button>
+          </form>
+    </div>
+
+</div>

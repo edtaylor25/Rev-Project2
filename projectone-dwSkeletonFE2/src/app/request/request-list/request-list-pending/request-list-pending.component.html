@@ -1,0 +1,84 @@
+<div class="container mt-2">
+    <button type="button" class="btn btn-secondary" (click) = "setNewFlag()">Create New Request</button>
+    <div *ngIf="newFlag">
+        <form class="form-inline">
+            <label for="date">Date of expense</label>
+            <input type="date" 
+            class="form-control" 
+            placeholder="Enter date expense was made"
+             name="date" 
+             id="date" [(ngModel)]="newPending.date"
+             >
+            <label for="amount">Amount</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                placeholder="Enter amount for expense" 
+                name = "amount"
+                id="amount" [(ngModel)] = "newPending.amount"
+                >
+            <div class="form-check">
+            </div>
+            <div class="container row">
+                <div class="col-md-6">
+            <input type="file" (change)="onFileChanged($event)">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark" (click)="addRequest()">Submit</button>
+          </form>
+    </div>
+
+    <button type="button" class="btn btn-dark" (click)="setPendingFlag()">View Pending</button>
+    <button type="button" class="btn btn-dark" (click)="setResolvedFlag()">View Resolved</button> 
+
+    <div *ngIf="pendingFlag">
+    <h2>YOUR PENDING REQUESTS</h2>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Request Date</th>
+                <th>Amount Requested</th>
+                <th>Status</th>
+               <th>Proof of Reimbursement</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let req of allPending">
+                <td>{{req.id}}</td>
+                <td>{{req.date}}</td>
+                <td>{{req.amount}}</td>
+                <td>{{req.status}}</td>
+                <td></td>
+                <td><button type="button" (click)="removeRequest(req.id)"><span class="material-icons">cancel</span></button></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+
+
+    <div *ngIf="resolvedFlag">
+        <h2>YOUR RESOLVED REQUESTS</h2>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Request Date</th>
+                    <th>Amount Requested</th>
+                    <th>Status</th>
+                    <th>Proof of Riembursement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let req of allResolved">
+                    <td>{{req.id}}</td>
+                    <td>{{req.date}}</td>
+                    <td>{{req.amount}}</td>
+                    <td>{{req.status}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

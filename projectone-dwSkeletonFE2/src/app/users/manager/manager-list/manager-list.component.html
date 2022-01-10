@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>All Managers' Info</h2>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Screen Name</th>
+                    <th>User Type</th>
+                    <th>Home State</th>
+                    <th>Home Town</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usr of allManagers">
+                    <td>{{usr.id}}</td>
+                    <td>{{usr.screenName}}</td>
+                    <td>{{usr.userType}}</td>
+                    <td>{{usr.homeState}}</td>
+                    <td>{{usr.homeTown}}</td>
+                    <td>{{usr.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
